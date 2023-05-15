@@ -1,17 +1,26 @@
-// Load API v6.
 loadAPI(6);
 
-// Basic setup.
 host.setShouldFailOnDeprecatedUse(true);
-host.defineController("Arturia", "MiniLab Mk II", "1.0", "51b6404a-5583-4cf6-9cdc-d8af0d26aca3", "bequadro");
+
+host.defineController(
+	"Arturia",
+	"MiniLab Mk II",
+	"1.0",
+	"51b6404a-5583-4cf6-9cdc-d8af0d26aca3",
+	"bequadro"
+);
+
 host.defineMidiPorts(1, 1);
-host.addDeviceNameBasedDiscoveryPair([
-	"Arturia MiniLab mkII",
-	"Arturia MiniLab mkII MIDI 1"
-], [
-	"Arturia MiniLab mkII",
-	"Arturia MiniLab mkII MIDI 1"
-]);
+
+host.addDeviceNameBasedDiscoveryPair(
+	["Arturia MiniLab mkII"],
+	["Arturia MiniLab mkII"]
+);
+
+host.addDeviceNameBasedDiscoveryPair(
+	["Arturia MiniLab mkII MIDI 1"],
+	["Arturia MiniLab mkII MIDI 1"]
+);
 
 // MIDI messages.
 const MIDI_STATUS_PAD_ON = 153;
@@ -67,6 +76,7 @@ const PAD_COLORS = [
 ];
 
 function init() {
+	println("MiniLab MK2 Controller start configuring.");
 	// Create separate inputs for keys and pads. Set aftertouch to pads.
 	MiniLabKeys = host.getMidiInPort(0).createNoteInput("MiniLab Keys", "80????", "90????", "B001??", "B002??", "B007??", "B00B??", "B040??", "C0????", "D0????", "E0????");
 	MiniLabKeys.setShouldConsumeEvents(false);
@@ -103,16 +113,7 @@ function init() {
 		setPadColor(i, PAD_COLORS[i]);
 	}
 
-	// Set colored control indicators.
-	// for (let i = 0; i < 6; i++) {
-	// 	ccKnobs.getControl(i).setIndication(true);
-	// }
-	// for (let i = 0; i < 8; i++) {
-	// 	macros.getParameter(i).setIndication(true);
-	// }
-
-	// Hi.
-	println("MiniLab MK2 Controller Script by @bequadro.");
+	println("MiniLab MK2 Controller configuration is complete.");
 }
 
 // Called when a short MIDI message is received on MIDI input port 0.
@@ -184,9 +185,6 @@ function onMidi(status, data1, data2) {
 		}
 
 	}
-
-	//println('Status: ' + status + ', Data1: ' + data1 + ', Data2: ' + data2);
-
 }
 
 function flush() {

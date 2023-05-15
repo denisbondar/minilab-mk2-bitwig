@@ -2,7 +2,7 @@
 
 ## Setup
 
-- Download `minilab-mk2.control.js` and copy into `~/Documents/Bitwig Studio/Controller Scripts` (Windows) or `~/Bitwig\ Studio/Controller\ Scripts/` (Linux).
+- Download `minilab-mk2.control.js` and copy into `~/Documents/Bitwig Studio/Controller Scripts` (MacOS) or `~/Documents/Bitwig Studio/Controller Scripts` (Windows) or `~/Bitwig\ Studio/Controller\ Scripts/` (Linux).
 
 ### Bitwig
 - Connect a Minilab MkII to PC.
